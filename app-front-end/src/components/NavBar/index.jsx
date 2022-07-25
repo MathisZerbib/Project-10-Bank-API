@@ -5,7 +5,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-const NavContainer = styled.nav`
+const NavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,21 +32,24 @@ function NavBar() {
     const pathName = window.location.pathname
 
   return (
-    <NavContainer className="nav-container">
+
+<div>
+<NavContainer className="main-nav">
       <NavLink to={pathName+"/"}>
         <HomeLogo src={ArgentBankLogo} />
+        <h1 className="sr-only">Argent Bank</h1>
       </NavLink>
-
-
-      <LinkContainer>
+      
+    <div>
+      <LinkContainer className="main-nav-item">
         <NavLink className={isLinkActive} to={pathName+"/login"}>
           <FontAwesomeIcon icon={faUser} />
           Sign-In
         </NavLink>
       </LinkContainer>
-
-
-    </NavContainer>
+    </div>
+  </NavContainer>
+    </div>
   );
 }
 
