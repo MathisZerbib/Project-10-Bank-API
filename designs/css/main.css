@@ -42,12 +42,12 @@ body {
   padding: 5px 20px;
 }
 
-.main-nav a {
+.main-nav .nav-link  {
   font-weight: bold;
   color: #2c3e50;
 }
 
-.main-nav a.router-link-exact-active {
+.main-nav .nav-link .router-link-exact-active {
   color: #42b983;
 }
 

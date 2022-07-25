@@ -9,10 +9,8 @@ import React from "react";
 import NavBar from "./components/NavBar";
 // import SideBar from "./components/SideBar";
 import Home from "./pages/Home";
-
+import SignIn from "./pages/SignIn";
 function App() {
-  // const pathName = window.location.pathname
-  // console.log("pathname", pathName)
   return (
     <div className="App">
     <NavBar></NavBar>          
@@ -23,6 +21,7 @@ function App() {
       <Routes>
         {/* <Route path={pathName+"*" }element={<NotFound />} /> */}
         <Route path={"/"} element={<Home />} />
+        <Route path={"/sign-in"} element={<SignIn />} />
         {/* <Route path={pathName+"about"} element={<About />} />
         <Route path={pathName+"location/:id"} element={<Location />} /> */}
       </Routes>     
