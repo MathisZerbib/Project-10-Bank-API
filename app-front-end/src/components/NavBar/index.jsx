@@ -42,7 +42,7 @@ function NavBar() {
       
     <div>
       <LinkContainer className="main-nav-item">
-        <NavLink className={isLinkActive} to={pathName+"/login"}>
+        <NavLink className={isLinkActive} to={pathName+"login"}>
           <FontAwesomeIcon icon={faUser} />
           Sign-In
         </NavLink>
