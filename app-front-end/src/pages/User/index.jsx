@@ -1,7 +1,11 @@
 import React from "react";
+import { useSelector } from 'react-redux';
+
 import Footer from "../../components/Footer";
 
 function User() {
+    const authUser = useSelector(x => x.auth.user);
+
   return (
     <div>
       <main className="main bg-dark">
@@ -9,7 +13,7 @@ function User() {
           <h1>
             Welcome back
             <br />
-            Tony Jarvis!
+            {authUser.firstName} {authUser.lastName}
           </h1>
           <button className="edit-button">Edit Name</button>
         </div>

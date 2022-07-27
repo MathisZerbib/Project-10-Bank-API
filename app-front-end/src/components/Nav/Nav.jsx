@@ -23,10 +23,10 @@ const HomeLogo = styled.img`
   float: left;
 `;
 
-const LinkContainer = styled.nav`
-  display: flex;
-  justify-content: space-evenly;
-`;
+// const LinkContainer = styled.nav`
+//   display: flex;
+//   justify-content: space-evenly;
+// `;
 
 
 
