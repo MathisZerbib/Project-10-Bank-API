@@ -6,7 +6,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 import { authActions } from "../../_store";
 
@@ -50,7 +50,7 @@ function Nav() {
         </NavContainer>
 
         <NavContainer>
-          <NavLink to={"/login"}>
+          <NavLink to={"/sign-in"}>
             <FontAwesomeIcon icon={faUserCircle} />
             Sign-In
           </NavLink>
@@ -75,7 +75,7 @@ function Nav() {
           </NavLink>
 
         <div>
-          <FontAwesomeIcon icon={faDoorOpen} />
+          <FontAwesomeIcon icon={faRightFromBracket} />
           <button onClick={logout} className="btn btn-link nav-item nav-link">
             Logout
           </button>
