@@ -10,7 +10,7 @@ import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 import { authActions } from "../../_store";
 
-const NavContainer = styled.div`
+const NavContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,9 +47,6 @@ function Nav() {
               <h1 className="sr-only">Argent Bank</h1>
             </NavLink>
           </div>
-        </NavContainer>
-
-        <NavContainer>
           <NavLink to={"/sign-in"}>
             <FontAwesomeIcon icon={faUserCircle} />
             Sign-In
@@ -67,14 +64,13 @@ function Nav() {
             <h1 className="sr-only">Argent Bank</h1>
           </NavLink>
         </div>
-      </NavContainer>
-      <NavContainer>
+        <div className="navbar-nav">
+
           <NavLink to={"/user"}>
             <p>{authUser.firstName}</p>
             <FontAwesomeIcon icon={faUserCircle} />
           </NavLink>
 
-        <div>
           <FontAwesomeIcon icon={faRightFromBracket} />
           <button onClick={logout} className="btn btn-link nav-item nav-link">
             Logout
@@ -84,3 +80,25 @@ function Nav() {
     </div>
   );
 }
+
+
+
+
+
+
+// <nav class="main-nav">
+// <a class="main-nav-logo" href="./index.html">
+//   <img
+//     class="main-nav-logo-image"
+//     src="./img/argentBankLogo.png"
+//     alt="Argent Bank Logo"
+//   />
+//   <h1 class="sr-only">Argent Bank</h1>
+// </a>
+// <div>
+//   <a class="main-nav-item" href="./sign-in.html">
+//     <i class="fa fa-user-circle"></i>
+//     Sign In
+//   </a>
+// </div>
+// </nav>

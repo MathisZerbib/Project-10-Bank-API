@@ -70,7 +70,7 @@ function Login() {
     <main className="main bg-dark">
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
-        <h1>Sign In</h1>
+      
 
         <div className="col-md-6 offset-md-3 mt-5">
           <div className="alert alert-info">
@@ -79,7 +79,7 @@ function Login() {
             Password: test
           </div>
           <div className="card">
-            <h4 className="card-header">Login</h4>
+          <h4 className="card-header">Sign In</h4>
             <div className="card-body">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group input-wrapper">
