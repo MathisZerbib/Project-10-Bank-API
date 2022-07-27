@@ -12,39 +12,36 @@ import Home from "./pages/Home";
 import { Login } from "./pages/Login";
 import User from "./pages/User";
 import { history } from "./_helpers";
-import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
-
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 
 import { Nav } from "./components/Nav/Nav";
 function App() {
   history.navigate = useNavigate();
   history.location = useLocation();
 
-  
   return (
     <div className="App">
-    <Nav></Nav>          
+      <Nav></Nav>
 
-<div className="main-container">
-    {/* <SideBar></SideBar> */}
+      <div className="main-container">
+        {/* <SideBar></SideBar> */}
 
-      <Routes>
-        {/* <Route path={pathName+"*" }element={<NotFound />} /> */}
-        <Route
-                        path="/"
-                        element={
-                            <PrivateRoute>
-                                <Home />
-                            </PrivateRoute>
-                        }
-                    />
-        <Route path="/login" element={<Login />} />
-        <Route path={"/user"} element={<User />} />
-        {/* <Route path={pathName+"about"} element={<About />} />
+        <Routes>
+          {/* <Route path={pathName+"*" }element={<NotFound />} /> */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path={"/user"}
+            element={
+              <PrivateRoute>
+                <User />
+              </PrivateRoute>
+            }
+          />
+          {/* <Route path={pathName+"about"} element={<About />} />
         <Route path={pathName+"location/:id"} element={<Location />} /> */}
-      </Routes>     
-
-    </div>
+        </Routes>
+      </div>
     </div>
   );
 }
