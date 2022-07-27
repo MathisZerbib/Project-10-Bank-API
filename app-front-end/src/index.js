@@ -5,15 +5,24 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import { store } from './_store';
+
+// setup fake backend
+import { fakeBackend } from './_helpers';
+fakeBackend();
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
   <React.StrictMode>
-    <App />
+      <Provider store={store}>
+          <BrowserRouter>
+              <App />
+          </BrowserRouter>
+      </Provider>
   </React.StrictMode>
-  </BrowserRouter>
 );
 
 

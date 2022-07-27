@@ -40,7 +40,7 @@ function NavBar() {
       
     <div>
       <LinkContainer className="main-nav-item">
-        <NavLink className={isLinkActive} to={"/sign-in"}>
+        <NavLink className={isLinkActive} to={"/login"}>
           <FontAwesomeIcon icon={faUserCircle} />
           Sign-In
         </NavLink>
