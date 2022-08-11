@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../../_store";
 import Footer from "../../components/Footer";
+import { useEffect } from "react";
 
 
 
@@ -20,11 +21,11 @@ function User() {
 //   };
   
 
-function run () {
-  dispatch(userActions.profile());
-}
+  useEffect(() => {
+    dispatch(userActions.profile());
+  }, [dispatch]);
+  
 
-run();
 // create();
 
   return (
