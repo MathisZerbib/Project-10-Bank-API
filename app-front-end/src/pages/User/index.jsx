@@ -3,21 +3,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../../_store";
 import Footer from "../../components/Footer";
 
-import { Login } from "../Login";
 
 
 
 
 function User() {
   const dispatch = useDispatch();
-  const { user: currentUser } = useSelector((state) => state.auth);
-  if (!currentUser) {
-    return <Login />;
-  }
-  function run() {
-    return   dispatch(userActions.profile());
-  }
-  run()
+  const currentUser = useSelector((state) => state.profile.user);
+  dispatch(userActions.profile());
+
+//   const create = () => {
+//     return async (getState) => {
+//          const currentState= getState().profile;
+//         console.log(currentState, "coucou") 
+//     };
+//   };
+  
+
+function run () {
+  dispatch(userActions.profile());
+}
+
+run();
+// create();
 
   return (
     <div>
@@ -25,9 +33,7 @@ function User() {
         <div className="header">
           <h1>
             Welcome back
-          {currentUser.progi}
-
-            <br />
+          <pre>{currentUser.body.firstName}</pre>
           </h1>
           <button className="button edit-button">Edit Name</button>
         </div>

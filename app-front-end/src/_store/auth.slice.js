@@ -33,7 +33,9 @@ function createReducers() {
 
     function logout(state) {
         state.user = null;
+        state.profile = null;
         localStorage.removeItem('user');
+        localStorage.removeItem('userInfo');
         history.navigate('/sign-in');
     }
 }

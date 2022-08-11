@@ -20,7 +20,7 @@ export const usersReducer = slice.reducer;
 
 function createInitialState() {
     return {
-        profile: JSON.parse(localStorage.getItem('profile')),
+        user: JSON.parse(localStorage.getItem('userInfo')),
         error: null
 
     }
@@ -54,10 +54,10 @@ function createExtraReducers() {
             },
             [fulfilled]: (state, action) => {
                 const profileUser = action.payload;
-                localStorage.setItem('profile', JSON.stringify(profileUser));
+                localStorage.setItem('userInfo', JSON.stringify(profileUser));
 
                 state.profile = profileUser;
-                console.log(current(state))
+                // console.log(current(state))
 
                 // store user info
             },
