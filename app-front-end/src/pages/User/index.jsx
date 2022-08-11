@@ -10,16 +10,7 @@ import { useEffect } from "react";
 
 function User() {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.profile.user);
-  dispatch(userActions.profile());
-
-//   const create = () => {
-//     return async (getState) => {
-//          const currentState= getState().profile;
-//         console.log(currentState, "coucou") 
-//     };
-//   };
-  
+  const currentUser = useSelector((state) => state.profile.user);  
 
   useEffect(() => {
     dispatch(userActions.profile());
