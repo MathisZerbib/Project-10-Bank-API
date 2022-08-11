@@ -1,10 +1,23 @@
 import React from "react";
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from "react-redux";
+import { userActions } from "../../_store";
 import Footer from "../../components/Footer";
 
+import { Login } from "../Login";
+
+
+
+
 function User() {
-    const authUser = useSelector(x => x.auth.user);
+  const dispatch = useDispatch();
+  const { user: currentUser } = useSelector((state) => state.auth);
+  if (!currentUser) {
+    return <Login />;
+  }
+  function run() {
+    return   dispatch(userActions.profile());
+  }
+  run()
 
   return (
     <div>
@@ -12,8 +25,9 @@ function User() {
         <div className="header">
           <h1>
             Welcome back
+          {currentUser.progi}
+
             <br />
-            {authUser.firstName} {authUser.lastName}
           </h1>
           <button className="button edit-button">Edit Name</button>
         </div>
@@ -55,3 +69,40 @@ function User() {
 }
 
 export default User;
+
+
+
+// import React from "react";
+// import { Login } from "../Login";
+// import { useSelector } from "react-redux";
+// const User = () => {
+//   const { user: currentUser } = useSelector((state) => state.auth);
+//   if (!currentUser) {
+//     return <Login />;
+//   }
+//   return (
+//     <div className="container">
+//       <header className="jumbotron">
+//         <h3>
+//           <strong>{currentUser.username}</strong> User
+//         </h3>
+//       </header>
+//       <p>
+//         <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
+//         {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
+//       </p>
+//       <p>
+//         <strong>Id:</strong> {currentUser.id}
+//       </p>
+//       <p>
+//         <strong>Email:</strong> {currentUser.email}
+//       </p>
+//       <strong>Authorities:</strong>
+//       <ul>
+//         {currentUser.roles &&
+//           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
+//       </ul>
+//     </div>
+//   );
+// };
+// export default User;

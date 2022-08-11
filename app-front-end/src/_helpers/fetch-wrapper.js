@@ -17,6 +17,7 @@ function request(method) {
             requestOptions.headers['Content-Type'] = 'application/json';
             requestOptions.body = JSON.stringify(body);
         }
+        console.log('method', method, 'headers',requestOptions.headers);
         return fetch(url, requestOptions).then(handleResponse);
     }
 }
@@ -28,6 +29,7 @@ function authHeader(url) {
     const token = authToken();
     const isLoggedIn = !!token;
     const isApiUrl = url.startsWith("http://localhost:3001/api/v1");
+    // console.log('Token', token, 'isApiUrl', isApiUrl);
     if (isLoggedIn && isApiUrl) {
         return { Authorization: `Bearer ${token}` };
     } else {
@@ -36,14 +38,13 @@ function authHeader(url) {
 }
 
 function authToken() {
-    return store.getState().auth.user?.token;
+    return store.getState().auth.user?.body?.token;
 }
 
-function getUser() {
-    return store.getState();
-}
+// console.log(getUser());
 
-console.log(getUser());
+
+
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);

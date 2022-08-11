@@ -1,10 +1,11 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 
 import { fetchWrapper } from '../_helpers';
 
+
 // create slice
 
-const name = 'users';
+const name = 'user';
 const initialState = createInitialState();
 const extraActions = createExtraActions();
 const extraReducers = createExtraReducers();
@@ -19,7 +20,9 @@ export const usersReducer = slice.reducer;
 
 function createInitialState() {
     return {
-        users: {}
+        profile: JSON.parse(localStorage.getItem('profile')),
+        error: null
+
     }
 }
 
@@ -27,33 +30,39 @@ function createExtraActions() {
     const baseUrl = `http://localhost:3001/api/v1/user/profile`;
 
     return {
-        getAll: getAll()
+        profile: profile()
     };    
 
-    function getAll() {
+    function profile() {
         return createAsyncThunk(
-            `${name}/getAll`,
-            async () => await fetchWrapper.get(baseUrl)
+            `${name}/profile`,
+            async () => await fetchWrapper.post(baseUrl)
         );
     }
 }
 
 function createExtraReducers() {
     return {
-        ...getAll()
+        ...profile()
     };
 
-    function getAll() {
-        var { pending, fulfilled, rejected } = extraActions.getAll;
+    function profile() {
+        var { pending, fulfilled, rejected } = extraActions.profile;
         return {
             [pending]: (state) => {
-                state.users = { loading: true };
+                state.profile = { loading: true };
             },
             [fulfilled]: (state, action) => {
-                state.users = action.payload;
+                const profileUser = action.payload;
+                localStorage.setItem('profile', JSON.stringify(profileUser));
+
+                state.profile = profileUser;
+                console.log(current(state))
+
+                // store user info
             },
             [rejected]: (state, action) => {
-                state.users = { error: action.error };
+                state.profile = { error: action.error };
             }
         };
     }
