@@ -69,6 +69,7 @@ paths:
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
+          type: string
           required: true
       produces:
         - application/json
@@ -92,6 +93,7 @@ paths:
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
+          type: string
           required: true
         - in: body
           name: body
@@ -110,59 +112,133 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-# /user/transaction/{id}:
-#     post:
-#       security:
-#         - Bearer: []
-#       tags:
-#         - Transaction Module
-#       summary: Transaction  API
-#       description: API for fetching a Transaction 
-#       parameters:
-#         - in: header
-#           name: Authorization
-#           description: Attach Bearer JWT token
-#           required: true
-#       produces:
-#         - application/json
-#       responses:
-#         '200':
-#           description: Transaction  retrieved successully
-#           schema:
-#             $ref: '#/definitions/ApiResponse'
-#         '400':
-#           description: Invalid Fields
-#         '500':
-#           description: Internal Server Error
-#     put:
-#       security:
-#         - Bearer: []
-#       tags:
-#         - Transaction Module
-#       summary: Transaction  API
-#       description: API for updating a Transaction 
-#       parameters:
-#         - in: header
-#           name: Authorization
-#           description: Attach Bearer JWT token
-#           required: true
-#         - in: body
-#           name: body
-#           description: Update Transaction attributes
-#           required: true
-#           schema:
-#             $ref: '#/definitions/Transaction'
-#       produces:
-#         - application/json
-#       responses:
-#         '200':
-#           description: Transaction  retrieved successully
-#           schema:
-#             $ref: '#/definitions/ApiResponse'
-#         '400':
-#           description: Invalid Fields
-#         '500':
-#           description: Internal Server Error
+
+  /user/transcations/:
+     post:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Transaction  API
+      description: API for fetching all the Transactions
+      parameters:
+        - in: header          
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transactions  retrieved successully
+          schema:
+            $ref: '#/definitions/TransactionListResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error 
+          
+  /user/transaction/{id}:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Transaction  API
+      description: API for fetching a Transaction 
+      parameters:
+        - name: id
+          in: path
+          description: Transaction ID to fetch
+          required: true
+          type: integer
+          format: int64
+          
+        - in: header          
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction  retrieved successully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Transaction API
+      description: API for updating a Transaction 
+      parameters:
+        - name: id
+          in: path
+          description: ID of transaction to update
+          required: true
+          type: integer
+          format: int64
+
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: body
+          name: body
+          description: Update Transaction attributes
+          required: true
+          schema:
+            $ref: '#/definitions/Transaction'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction  retrieved successully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Transaction API
+      description: API for updating a Transaction 
+      parameters:
+        - name: id
+          in: path
+          description: ID of transaction to delete
+          required: true
+          type: integer
+          format: int64
+
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction successully deleted
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
 
           
 securityDefinitions:
@@ -219,13 +295,22 @@ definitions:
         type: string
       lastName:
         type: string
+  Transaction:
+    type: object
+    properties:
+      id: 
+        type: integer
+      title:
+        type: string
+      amount:
+        type: integer
+      date:
+        type: string
+        
+  TransactionListResponse:
+      type: array
+      items:
+        $ref: '#/definitions/Transaction'
+        
 
-  # Transaction:
-  #   type: object
-  #   properties:
-  #     title:
-  #       type: string
-  #     amount:
-  #       type: integer
-  #     date:
-  #       type: string
+
