@@ -311,6 +311,12 @@ definitions:
       type: array
       items:
         $ref: '#/definitions/Transaction'
-        
+      example:
+      - id: 1
+        title: firstTx
+        amount: 1500
+      - id: 2
+        title: secondTx
+        amount: 2000.3
 
 
