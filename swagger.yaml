@@ -133,7 +133,7 @@ paths:
         '200':
           description: Transactions  retrieved successully
           schema:
-            $ref: '#/definitions/TransactionListResponse'
+            $ref: '#/definitions/TransactionsListResponse'
         '400':
           description: Invalid Fields
         '500':
@@ -307,7 +307,7 @@ definitions:
       date:
         type: string
         
-  TransactionListResponse:
+  TransactionsListResponse:
       type: array
       items:
         $ref: '#/definitions/Transaction'
