@@ -1,7 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { userActions } from "../../_store";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,18 +8,10 @@ import * as Yup from "yup";
 import { FloatingLabel, Form, FormGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// import { formActions } from "../../_store";
 
 function Profile() {
-  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.profile.user);
   const userError = useSelector((state) => state.profile.error);
-
-  // useEffect(() => {
-  //   dispatch(userActions.profile());
-  // }, [dispatch]);
-
-  // console.log(currentUser);
 
   // Form validation rules
   const validationSchema = Yup.object().shape({
@@ -35,12 +25,13 @@ function Profile() {
   const { errors, isSubmitting } = formState;
 
   function onSubmit({ firstName, lastName }) {
-    console.log(currentUser, firstName, lastName);
+    console.log("Saved !", firstName, lastName);
+
   }
 
-  function handleChange(event) {
-    console.log(event.target.value);
-  }
+  // function handleChange(event) {
+  //   console.log(event.target.value);
+  // }
 
   return (
     <section>
