@@ -51,7 +51,7 @@ function User() {
               <Modal.Title>Modify Profile</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Profile />
+              <Profile firstName={currentUser?.body.firstName} lastName={currentUser?.body.lastName} />
             </Modal.Body>
             <Modal.Footer>
             </Modal.Footer>

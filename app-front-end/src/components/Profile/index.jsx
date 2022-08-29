@@ -9,8 +9,7 @@ import { FloatingLabel, Form, FormGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-function Profile() {
-  const currentUser = useSelector((state) => state.profile.user);
+function Profile(props) {
   const userError = useSelector((state) => state.profile.error);
 
   // Form validation rules
@@ -46,7 +45,7 @@ function Profile() {
             >
               <Form.Control
                 type="text"
-                value={currentUser?.body.firstName}
+                defaultValue={props.firstName}
                 {...register("firstName")}
                 className={`form-control ${
                   errors.firstName ? "is-invalid" : ""
@@ -67,7 +66,7 @@ function Profile() {
             >
               <Form.Control
                 type="text"
-                value={currentUser?.body.lastName}
+                defaultValue={props.lastName}
                 {...register("lastName")}
                 className={`form-control ${
                   errors.lastName ? "is-invalid" : ""
