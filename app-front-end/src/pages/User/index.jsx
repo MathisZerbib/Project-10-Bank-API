@@ -1,11 +1,22 @@
-import React from "react";
+import { React, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../../_store";
 import Footer from "../../components/Footer";
 import { useEffect } from "react";
 import Profile from "../../components/Profile";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+
 function User() {
+  // Modale
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.profile.user);
 
@@ -13,25 +24,40 @@ function User() {
     dispatch(userActions.profile());
   }, [dispatch]);
 
-
   return (
     <div>
       <main className="main bg-dark">
         <div className="header">
           <h1>
             Welcome back
-            {currentUser && currentUser?.body.length > 0 && (currentUser !== undefined || null) ? (
+            {currentUser &&
+            currentUser?.body.length > 0 &&
+            (currentUser !== undefined || null) ? (
               <>Loading data</>
             ) : (
               <>
-              <pre>{currentUser?.body.firstName} {currentUser?.body.lastName}</pre>
+                <pre>
+                  {currentUser?.body.firstName} {currentUser?.body.lastName}
+                </pre>
               </>
             )}
           </h1>
-          <button className="button edit-button">Edit Name</button>
+          <button className="button edit-button" onClick={handleShow}>
+            Edit Name
+          </button>
         </div>
-        {/* <Profile /> */}
-
+        <div>
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Modify Profile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Profile />
+            </Modal.Body>
+            <Modal.Footer>
+            </Modal.Footer>
+          </Modal>
+        </div>
         <h2 className="sr-only">Accounts</h2>
         <section className="account">
           <div className="account-content-wrapper">
@@ -76,38 +102,3 @@ function User() {
 }
 
 export default User;
-
-// import React from "react";
-// import { Login } from "../Login";
-// import { useSelector } from "react-redux";
-// const User = () => {
-//   const { user: currentUser } = useSelector((state) => state.auth);
-//   if (!currentUser) {
-//     return <Login />;
-//   }
-//   return (
-//     <div className="container">
-//       <header className="jumbotron">
-//         <h3>
-//           <strong>{currentUser.username}</strong> User
-//         </h3>
-//       </header>
-//       <p>
-//         <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
-//         {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-//       </p>
-//       <p>
-//         <strong>Id:</strong> {currentUser.id}
-//       </p>
-//       <p>
-//         <strong>Email:</strong> {currentUser.email}
-//       </p>
-//       <strong>Authorities:</strong>
-//       <ul>
-//         {currentUser.roles &&
-//           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-//       </ul>
-//     </div>
-//   );
-// };
-// export default User;
