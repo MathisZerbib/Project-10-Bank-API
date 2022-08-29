@@ -3,21 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../../_store";
 import Footer from "../../components/Footer";
 import { useEffect } from "react";
-
-
-
-
+import Profile from "../../components/Profile";
 
 function User() {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.profile.user);  
+  const currentUser = useSelector((state) => state.profile.user);
 
   useEffect(() => {
     dispatch(userActions.profile());
   }, [dispatch]);
-  
 
-// create();
 
   return (
     <div>
@@ -25,10 +20,18 @@ function User() {
         <div className="header">
           <h1>
             Welcome back
-          <pre>{currentUser.body.firstName}</pre>
+            {currentUser && currentUser?.body.length > 0 && (currentUser !== undefined || null) ? (
+              <>Loading data</>
+            ) : (
+              <>
+              <pre>{currentUser?.body.firstName} {currentUser?.body.lastName}</pre>
+              </>
+            )}
           </h1>
           <button className="button edit-button">Edit Name</button>
         </div>
+        {/* <Profile /> */}
+
         <h2 className="sr-only">Accounts</h2>
         <section className="account">
           <div className="account-content-wrapper">
@@ -37,7 +40,9 @@ function User() {
             <p className="account-amount-description">Available Balance</p>
           </div>
           <div className="account-content-wrapper cta">
-            <button className="button  transaction-button">View transactions</button>
+            <button className="button  transaction-button">
+              View transactions
+            </button>
           </div>
         </section>
         <section className="account">
@@ -47,7 +52,9 @@ function User() {
             <p className="account-amount-description">Available Balance</p>
           </div>
           <div className="account-content-wrapper cta">
-            <button className="button  transaction-button">View transactions</button>
+            <button className="button  transaction-button">
+              View transactions
+            </button>
           </div>
         </section>
         <section className="account">
@@ -57,7 +64,9 @@ function User() {
             <p className="account-amount-description">Current Balance</p>
           </div>
           <div className="account-content-wrapper cta">
-            <button className="button  transaction-button">View transactions</button>
+            <button className="button  transaction-button">
+              View transactions
+            </button>
           </div>
         </section>
       </main>
@@ -67,8 +76,6 @@ function User() {
 }
 
 export default User;
-
-
 
 // import React from "react";
 // import { Login } from "../Login";

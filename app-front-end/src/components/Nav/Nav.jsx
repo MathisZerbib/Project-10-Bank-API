@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
-import { authActions } from "../../_store";
+import { authActions, userActions } from "../../_store";
 
 const NavContainer = styled.nav`
   display: flex;
@@ -35,7 +35,11 @@ function Nav() {
   const authUser = useSelector((x) => x.auth.user);
   const dispatch = useDispatch();
   const logout = () => dispatch(authActions.logout());
-
+  const wipeUserData = ()=> dispatch(userActions.wipeUserData())
+  function forgetUser() {
+    logout()
+    wipeUserData()
+  }
   // only show nav when logged in
   if (!authUser)
     return (
@@ -69,7 +73,7 @@ function Nav() {
             <p>{authUser.firstName}</p>
             <FontAwesomeIcon icon={faUserCircle} />
           </NavLink>
-          <button onClick={logout} className="button button-logout">
+          <button onClick={forgetUser} className="button button-logout">
             <FontAwesomeIcon icon={faRightFromBracket} />
             Logout
           </button>

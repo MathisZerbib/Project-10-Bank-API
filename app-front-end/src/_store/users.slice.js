@@ -5,11 +5,12 @@ import { fetchWrapper } from '../_helpers';
 
 // create slice
 
-const name = 'user';
+const name = 'userInfo';
 const initialState = createInitialState();
+const reducers = createReducers();
 const extraActions = createExtraActions();
 const extraReducers = createExtraReducers();
-const slice = createSlice({ name, initialState, extraReducers });
+const slice = createSlice({ name, initialState, reducers, extraReducers });
 
 // exports
 
@@ -22,7 +23,17 @@ function createInitialState() {
     return {
         user: JSON.parse(localStorage.getItem('userInfo')),
         error: null
+    }
+}
 
+function createReducers() {
+    return {
+        wipeUserData
+    };
+
+    function wipeUserData(state) {
+        state.profile = null
+        localStorage.removeItem('userInfo');
     }
 }
 
@@ -35,11 +46,13 @@ function createExtraActions() {
 
     function profile() {
         return createAsyncThunk(
-            `${name}/profile`,
+            `${name}/userProfile`,
             async () => await fetchWrapper.post(baseUrl)
         );
     }
+    
 }
+
 
 function createExtraReducers() {
     return {
@@ -56,7 +69,7 @@ function createExtraReducers() {
                 const profileUser = action.payload;
                 localStorage.setItem('userInfo', JSON.stringify(profileUser));
 
-                state.profile = profileUser;
+                state.user = profileUser;
                 // console.log(current(state))
 
                 // store user info

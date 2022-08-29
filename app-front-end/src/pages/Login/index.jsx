@@ -35,7 +35,7 @@ function Login() {
 
   return (
     <main className="main bg-dark">
-      <section className="sign-in-content">
+      <section className="sign-in-content  bg-dark">
         <i className="fa fa-user-circle sign-in-icon"></i>
       
 
