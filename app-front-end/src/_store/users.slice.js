@@ -41,7 +41,8 @@ function createExtraActions() {
     const baseUrl = `http://localhost:3001/api/v1/user/profile`;
 
     return {
-        profile: profile()
+        profile: profile(),
+        update: update(),
     };    
 
     function profile() {
@@ -50,16 +51,44 @@ function createExtraActions() {
             async () => await fetchWrapper.post(baseUrl)
         );
     }
+
+    function update() {
+        return createAsyncThunk(
+            `${name}/userUpdate`,
+            async ({firstName, lastName}) => await fetchWrapper.put(baseUrl, {firstName, lastName})
+        );
+    }
     
 }
 
 
 function createExtraReducers() {
     return {
-        ...profile()
+        ...profile(),
+        ...update()
     };
 
     function profile() {
+        var { pending, fulfilled, rejected } = extraActions.profile;
+        return {
+            [pending]: (state) => {
+                state.profile = { loading: true };
+            },
+            [fulfilled]: (state, action) => {
+                const profileUser = action.payload;
+                sessionStorage.setItem('userInfo', JSON.stringify(profileUser));
+                state.user = profileUser;
+                // console.log(current(state))
+
+                // store user info
+            },
+            [rejected]: (state, action) => {
+                state.profile = { error: action.error };
+            }
+        };
+    }
+
+    function update() {
         var { pending, fulfilled, rejected } = extraActions.profile;
         return {
             [pending]: (state) => {

@@ -1,5 +1,6 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { userActions } from "../../_store";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,7 +11,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 
 function Profile(props) {
+
+  const dispatch = useDispatch();
   const userError = useSelector((state) => state.profile.error);
+
+
+
+  const getUsers = useCallback(async () => {
+    dispatch(userActions.profile());
+  }, [dispatch])
+
 
   // Form validation rules
   const validationSchema = Yup.object().shape({
@@ -24,13 +34,10 @@ function Profile(props) {
   const { errors, isSubmitting } = formState;
 
   function onSubmit({ firstName, lastName }) {
-    console.log("Saved !", firstName, lastName);
-
+    dispatch(userActions.update({firstName, lastName}));
+    getUsers();
+    props.close()
   }
-
-  // function handleChange(event) {
-  //   console.log(event.target.value);
-  // }
 
   return (
     <section>

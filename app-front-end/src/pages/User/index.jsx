@@ -1,8 +1,6 @@
 import { React, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { userActions } from "../../_store";
+import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
-import { useEffect } from "react";
 import Profile from "../../components/Profile";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,18 +8,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Modal from "react-bootstrap/Modal";
 
 function User() {
+
+
   // Modale
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.profile.user);
 
-  useEffect(() => {
-    dispatch(userActions.profile());
-  }, [dispatch]);
+
 
   return (
     <div>
@@ -51,7 +48,9 @@ function User() {
               <Modal.Title>Modify Profile</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Profile firstName={currentUser?.body.firstName} lastName={currentUser?.body.lastName} />
+              <Profile close = {
+                    handleClose
+                 } firstName={currentUser?.body.firstName} lastName={currentUser?.body.lastName} />
             </Modal.Body>
             <Modal.Footer>
             </Modal.Footer>

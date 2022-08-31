@@ -29,10 +29,9 @@ body {
 
 .main {
   flex: 1;
-  height: 80vh;
   display: flex;
-flex-direction: column;
-justify-content: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .bg-dark {
