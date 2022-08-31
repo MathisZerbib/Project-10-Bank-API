@@ -40,6 +40,7 @@ function Nav() {
     logout()
     wipeUserData()
   }
+
   // only show nav when logged in
   if (!authUser)
     return (

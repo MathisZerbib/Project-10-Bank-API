@@ -6,7 +6,6 @@ import React from "react";
 // import Footer from "components/Footer";
 // import NotFound from "pages/NotFound";
 // import Dashboard from "./pages/Dashboard";
-// import NavBar from "./components/NavBar";
 // import SideBar from "./components/SideBar";
 import Home from "./pages/Home";
 import { Login } from "./pages/Login";
@@ -15,6 +14,8 @@ import { history } from "./_helpers";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 
 import { Nav } from "./components/Nav/Nav";
+
+
 function App() {
   history.navigate = useNavigate();
   history.location = useLocation();

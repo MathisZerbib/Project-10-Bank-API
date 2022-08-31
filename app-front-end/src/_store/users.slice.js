@@ -21,7 +21,7 @@ export const usersReducer = slice.reducer;
 
 function createInitialState() {
     return {
-        user: JSON.parse(localStorage.getItem('userInfo')),
+        user: JSON.parse(sessionStorage.getItem('userInfo')),
         error: null
     }
 }
@@ -33,7 +33,7 @@ function createReducers() {
 
     function wipeUserData(state) {
         state.profile = null
-        localStorage.removeItem('userInfo');
+        sessionStorage.removeItem('userInfo');
     }
 }
 
@@ -67,8 +67,7 @@ function createExtraReducers() {
             },
             [fulfilled]: (state, action) => {
                 const profileUser = action.payload;
-                localStorage.setItem('userInfo', JSON.stringify(profileUser));
-
+                sessionStorage.setItem('userInfo', JSON.stringify(profileUser));
                 state.user = profileUser;
                 // console.log(current(state))
 
