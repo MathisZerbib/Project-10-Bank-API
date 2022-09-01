@@ -1,14 +1,15 @@
-import { React, useState } from "react";
-import { useSelector } from "react-redux";
+import { React, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Footer from "../../components/Footer";
 import Profile from "../../components/Profile";
+import {userActions}  from "../../_store";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Modal from "react-bootstrap/Modal";
 
 function User() {
-
+  const dispatch = useDispatch();
 
   // Modale
   const [show, setShow] = useState(false);
@@ -19,6 +20,12 @@ function User() {
   const currentUser = useSelector((state) => state.profile.user);
 
 
+
+
+useEffect(()=>{
+    dispatch(userActions.profile());
+    
+  }, [dispatch])
 
   return (
     <div>

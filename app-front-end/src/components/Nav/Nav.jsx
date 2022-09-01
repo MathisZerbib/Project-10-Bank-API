@@ -33,6 +33,7 @@ export { Nav };
 
 function Nav() {
   const authUser = useSelector((x) => x.auth.user);
+  const currentUser = useSelector((state) => state.profile.user);
   const dispatch = useDispatch();
   const logout = () => dispatch(authActions.logout());
   const wipeUserData = ()=> dispatch(userActions.wipeUserData())
@@ -53,7 +54,7 @@ function Nav() {
 
           <div className="navbar-nav">
             <NavLink to={"/sign-in"}>
-              <FontAwesomeIcon icon={faUserCircle} />
+              <FontAwesomeIcon size="lg" icon={faUserCircle} />
               Sign-In
             </NavLink>
           </div>
@@ -70,9 +71,9 @@ function Nav() {
         </NavLink>
 
         <div className="navbar-nav">
-          <NavLink to={"/user"}>
-            <p>{authUser.firstName}</p>
-            <FontAwesomeIcon icon={faUserCircle} />
+          <NavLink to={"/user"} className="nav-user-link" >
+            <span>{currentUser?.body?.firstName} {currentUser?.body?.lastName}</span>
+            <FontAwesomeIcon size="lg" icon={faUserCircle} />
           </NavLink>
           <button onClick={forgetUser} className="button button-logout">
             <FontAwesomeIcon icon={faRightFromBracket} />
