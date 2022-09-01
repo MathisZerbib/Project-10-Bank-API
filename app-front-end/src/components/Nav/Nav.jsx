@@ -37,6 +37,8 @@ function Nav() {
   const dispatch = useDispatch();
   const logout = () => dispatch(authActions.logout());
   const wipeUserData = ()=> dispatch(userActions.wipeUserData())
+
+  
   function forgetUser() {
     logout()
     wipeUserData()

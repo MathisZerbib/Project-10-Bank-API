@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState,useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../../components/Footer";
 import Profile from "../../components/Profile";
@@ -19,13 +19,14 @@ function User() {
 
   const currentUser = useSelector((state) => state.profile.user);
 
-
-
+  const getUsers = useCallback(async () => {
+    return await dispatch(userActions.profile());
+  }, [dispatch])
+  
 
 useEffect(()=>{
-    dispatch(userActions.profile());
-    
-  }, [dispatch])
+  getUsers();
+  })
 
   return (
     <div>

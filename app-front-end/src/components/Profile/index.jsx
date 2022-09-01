@@ -18,7 +18,7 @@ function Profile(props) {
 
 
   const getUsers = useCallback(async () => {
-    dispatch(userActions.profile());
+    return await dispatch(userActions.profile());
   }, [dispatch])
 
 
