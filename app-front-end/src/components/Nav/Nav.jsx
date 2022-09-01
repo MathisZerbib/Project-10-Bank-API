@@ -74,32 +74,15 @@ function Nav() {
 
         <div className="navbar-nav">
           <NavLink to={"/user"} className="nav-user-link" >
-            <span>{currentUser?.body?.firstName} {currentUser?.body?.lastName}</span>
+            <span>{currentUser?.body?.firstName}</span>
             <FontAwesomeIcon size="lg" icon={faUserCircle} />
           </NavLink>
           <button onClick={forgetUser} className="button button-logout">
             <FontAwesomeIcon icon={faRightFromBracket} />
-            Logout
+            Sign Out
           </button>
         </div>
       </NavContainer>
     </div>
   );
 }
-
-// <nav class="main-nav">
-// <a class="main-nav-logo" href="./index.html">
-//   <img
-//     class="main-nav-logo-image"
-//     src="./img/argentBankLogo.png"
-//     alt="Argent Bank Logo"
-//   />
-//   <h1 class="sr-only">Argent Bank</h1>
-// </a>
-// <div>
-//   <a class="main-nav-item" href="./sign-in.html">
-//     <i class="fa fa-user-circle"></i>
-//     Sign In
-//   </a>
-// </div>
-// </nav>

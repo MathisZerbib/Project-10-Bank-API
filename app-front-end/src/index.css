@@ -34,8 +34,8 @@ body {
   justify-content: center;
 }
 
-.bg-dark {
-  background-color: #e0e6ed;
+.bg-dark-custom {
+  background-color: #12002b;
 }
 
 .sr-only {
@@ -73,8 +73,12 @@ body {
 .navbar-nav a {
   display: flex;
   align-items: center;
-  color: #6a5ef5;
+  color: #00bc77;
+  text-decoration: none;
+  font-size: small;
 }
+
+
 
 .navbar-nav a svg {
   
@@ -86,14 +90,18 @@ body {
 
 
 .button-logout {
-    border-color: black;
+    border: none;
     background-color: #fff;
     font-weight: bold;
     padding: 10px;
-    border-radius: 0.2rem;  
     display: flex;
     align-items: center;
     align-content: space-between;
+    margin: auto;
+}
+
+.button-logout:hover {
+  text-decoration: underline;
 }
 
 .main-nav a.router-link-exact-active {
@@ -206,6 +214,16 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.card-header {
+  background-color: white;
+}
+
+.sign-in-card {
+  padding: 10px;
+  padding-top: 40px;
+  width: 300px;
+  margin: 0 auto;
+}
 .sign-in-button {
   display: block;
   width: 100%;
@@ -218,13 +236,17 @@ body {
   color: #fff;
 }
 
+.sign-in-button:hover {
+  text-decoration: underline
+}
+
 .sign-in-content {
   box-sizing: border-box;
-  background-color: white;
   min-width: 80vw;
   margin: auto;
   margin-top: 0rem;
   padding: 2rem;
+  min-height: 80vh;
 }
 
 .sign-in-icon {
@@ -244,7 +266,7 @@ body {
   flex-direction: column;
   text-align: left;
   margin-bottom: 1rem;
-  color: #6a5ef5;;
+  color: black;;
 }
 
 .input-wrapper label {
@@ -261,6 +283,7 @@ body {
   justify-content: center;
   border-top: 2px solid #ccc;
   padding: 2rem 0 1.5rem;
+  background-color: white;
 }
 
 .footer-text {
@@ -306,9 +329,9 @@ body {
 }
 
 .edit-button {
-  border-color: #6a5ef5;
-  background-color: #fff;
-  color: #6a5ef5;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: white;
   font-weight: bold;
   padding: 10px;
   border-radius: 0.2rem;
@@ -326,8 +349,8 @@ body {
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
-  border-color: #6a5ef5;
-  background-color: #6a5ef5;
+  border-color: #00bc77;
+  background-color: #00bc77;
   color: #fff;
   border-radius: 0.3rem;
   height: 3rem;

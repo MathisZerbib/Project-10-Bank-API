@@ -3,9 +3,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 import { history } from "../../_helpers";
 import { authActions } from "../../_store";
+import Footer from "../../components/Footer";
 
 export { Login };
 
@@ -34,13 +37,12 @@ function Login() {
   }
 
   return (
-    <main className="main bg-dark">
-      <section className="sign-in-content  bg-dark">
+    <main className="main bg-dark-custom">
+      <section className="sign-in-content bg-dark-custom">
         <i className="fa fa-user-circle sign-in-icon"></i>
-      
 
         <div className="col-md-6 offset-md-3 mt-5">
-          <div className="alert alert-info">
+          {/* <div className="alert alert-info">
             email: steve@rogers.com
             <br />
             Password: password456
@@ -50,9 +52,11 @@ function Login() {
             email: tony@stark.com
             <br />
             Password: password123
-          </div>
-          <div className="card">
-          <h4 className="card-header">Sign In</h4>
+          </div> */}
+          <div className="card sign-in-card">
+            <FontAwesomeIcon size="lg" icon={faUserCircle} />
+            <br />
+            <h4>Sign In</h4>
             <div className="card-body">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group input-wrapper">
@@ -91,10 +95,7 @@ function Login() {
                   <label htmlFor="remember-me">Remember me</label>
                 </div>
 
-                <button
-                  disabled={isSubmitting}
-                  className="btn btn-primary sign-in-button"
-                >
+                <button disabled={isSubmitting} className="sign-in-button">
                   {isSubmitting && (
                     <span className="spinner-border spinner-border-sm mr-1"></span>
                   )}
@@ -110,6 +111,7 @@ function Login() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

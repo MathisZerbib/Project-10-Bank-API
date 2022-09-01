@@ -85,7 +85,7 @@ function Profile(props) {
 
           <button
             disabled={isSubmitting}
-            className="btn btn-primary sign-in-button"
+            className="sign-in-button"
             variant="primary"
           >
             {isSubmitting && (

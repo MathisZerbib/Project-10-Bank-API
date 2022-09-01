@@ -1,8 +1,8 @@
-import { React, useEffect, useState,useCallback } from "react";
+import { React, useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../../components/Footer";
 import Profile from "../../components/Profile";
-import {userActions}  from "../../_store";
+import { userActions } from "../../_store";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -21,16 +21,15 @@ function User() {
 
   const getUsers = useCallback(async () => {
     return await dispatch(userActions.profile());
-  }, [dispatch])
-  
+  }, [dispatch]);
 
-useEffect(()=>{
-  getUsers();
-  })
+  useEffect(() => {
+    getUsers();
+  });
 
   return (
     <div>
-      <main className="main bg-dark">
+      <main className="main bg-dark-custom">
         <div className="header">
           <h1>
             Welcome back
@@ -56,12 +55,13 @@ useEffect(()=>{
               <Modal.Title>Modify Profile</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Profile close = {
-                    handleClose
-                 } firstName={currentUser?.body.firstName} lastName={currentUser?.body.lastName} />
+              <Profile
+                close={handleClose}
+                firstName={currentUser?.body.firstName}
+                lastName={currentUser?.body.lastName}
+              />
             </Modal.Body>
-            <Modal.Footer>
-            </Modal.Footer>
+            <Modal.Footer></Modal.Footer>
           </Modal>
         </div>
         <h2 className="sr-only">Accounts</h2>
