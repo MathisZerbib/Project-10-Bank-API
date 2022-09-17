@@ -136,7 +136,7 @@ body {
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 300px;
+  min-height: 45vh;
   position: relative;
 }
 
@@ -340,6 +340,10 @@ body {
 .header {
   color: #fff;
   margin-bottom: 2rem;
+}
+
+.header > h1 {
+  margin: 1rem;
 }
 
 .transaction-button {
