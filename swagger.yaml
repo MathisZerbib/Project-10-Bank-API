@@ -113,20 +113,27 @@ paths:
         '500':
           description: Internal Server Error
 
-  /user/transcations/:
-     post:
+  /user/transcations/{month}:
+     get:
       security:
         - Bearer: []
       tags:
         - Transaction Module
       summary: Transaction  API
-      description: API for fetching all the Transactions
+      description: API for fetching all the Transactions by month
       parameters:
         - in: header          
           type: string
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          
+        - in: path
+          type: string
+          name: month
+          description: Month Parameter
+          required: true
+          
       produces:
         - application/json
       responses:
@@ -139,7 +146,44 @@ paths:
         '500':
           description: Internal Server Error 
           
+          
+          
+          
   /user/transaction/{id}:
+    get:
+      security:
+      - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Transaction  API
+      description: get a single Transaction 
+      parameters:
+        - name: id
+          in: path
+          description: Transaction ID to fetch
+          required: true
+          type: integer
+          format: int64
+          
+        - in: header          
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction  retrieved successully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+      
+      
+      
     post:
       security:
         - Bearer: []
@@ -315,8 +359,10 @@ definitions:
       - id: 1
         title: firstTx
         amount: 1500
+        date: "2022-09-17"
       - id: 2
         title: secondTx
         amount: 2000.3
+        date: "2022-12-17"
 
 

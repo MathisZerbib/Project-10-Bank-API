@@ -8,6 +8,8 @@ import React from "react";
 // import Dashboard from "./pages/Dashboard";
 // import SideBar from "./components/SideBar";
 import Home from "./pages/Home";
+import PageNotFound from "./pages/PageNotFound";
+
 import { Login } from "./pages/Login";
 import User from "./pages/User";
 import { history } from "./_helpers";
@@ -28,7 +30,7 @@ function App() {
         {/* <SideBar></SideBar> */}
 
         <Routes>
-          {/* <Route path={pathName+"*" }element={<NotFound />} /> */}
+        <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<Home />} />
           <Route path="/sign-in" element={<Login />} />
           <Route
@@ -39,8 +41,6 @@ function App() {
               </PrivateRoute>
             }
           />
-          {/* <Route path={pathName+"about"} element={<About />} />
-        <Route path={pathName+"location/:id"} element={<Location />} /> */}
         </Routes>
       </div>
     </div>

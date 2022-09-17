@@ -26,7 +26,6 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 
 }
-
 .main {
   flex: 1;
   display: flex;
@@ -372,4 +371,33 @@ body {
   .transaction-button {
     width: 200px;
   }
+}
+
+
+
+/* Page Not Found  */
+
+.page-not-found-container {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-not-found {
+  text-decoration: none;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+
+}
+
+.button-not-found:hover {
+  text-decoration: underline;
+  color: white;
 }
